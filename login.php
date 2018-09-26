@@ -1,23 +1,27 @@
 <?php
+// http://php.net/manual/en/language.variables.scope.php
 
-$username = "root";
-$password = "";
+// flytta till include för gitignore, vi har gått igenom detta
+// namnge variabler så att deras syfte är tydligt
+$dbuser = "root";
+$dbpass = "";
+$dbh = new PDO('mysql:host=localhost;dbname=awesomeapes', $dbuser, $dbpass);
 
-$dbh = new PDO('mysql:host=localhost;dbname=awesomeapes', $username, $password);
-
+// kör dessa med filter och skicka sedan med dem till era metoder
+$filtered_username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
 $input_username = $_POST["username"];
 $input_password = md5($_POST["password"]);
 
 if(isset($_POST["signup"])){
-	signup();
+	signup($filtered_username, $dbh); // bättrre skrivna funktioner med parameterar hanterar scope
+	// förberedelse för klass tänk
 } elseif(isset($_POST["login"])){
 	login();
 }
 
-function signup(){
-	global $dbh, $input_username, $input_password;
+function signup($username, $dbh){
 	$stmt = $dbh->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
-	$stmt->bindParam(':username', $input_username);
+	$stmt->bindParam(':username', $username); // se ändring
 	$stmt->bindParam(':password', $input_password);
 	$stmt->execute();
 }
