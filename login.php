@@ -20,7 +20,9 @@ if(isset($_POST["signup"])){
 } elseif(isset($_POST["login"])){
 	login($filtered_username, $_POST["password"], $dbh);
 } elseif(isset($_POST["add_money"])){
-	add_money($filtered_username, 10, $dbh);
+	if($_SESSION["logged_in"]){
+			add_money($_SESSION["username"], 10, $dbh);
+	}
 }
 
 
@@ -45,15 +47,9 @@ function login($input_username, $password, $dbh) {
 		$stmt->execute();
 		$row = $stmt->fetch();
 		if(password_verify($password, $row['password'])) {
-				echo "Logged in!";
-		} else {
-			echo "Wrong password";
-		}
-	} catch (PDOException $e) {
-			echo "Wrong username";
-	}
-
-}
+				echo "Logged in as Mr." . $input_username . "!<br>";
+				echo "<br>Wallet: " . $row["balance"];
+				echo '<form action="" method="post"><input type="submit" name="add_money" value="Add money"/></form>';
 
 
 
