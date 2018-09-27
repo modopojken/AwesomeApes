@@ -7,18 +7,18 @@ session_start();
 <head>
 	<title></title>
 </head>
-<body>
 
+<body>
 
 <!--
 <input type="text" name="username" value="" id="username" placeholder="Username">
 <input type="password" name="password" value="" id="password" placeholder="Password">
-<input type="submit"> 
+<input type="submit">
 -->
 
 	<form action="login.php" method="POST">
 		<fieldset>
-			<legend>Jag ska skära hans TUNG</legend>
+			<legend>AwesomeApes fantastiska webbplats på internet!</legend>
 			<p>
 				<label for="username">Användarnamn: </label>
 				<input type="text" name="username" id="username">
@@ -31,12 +31,12 @@ session_start();
 				<input type="submit" name="login" id="login" value="Logga in">
 				<input type="submit" name="signup" id="signup" value="Sign up">
 			</p>
-		</fieldset>	
+		</fieldset>
 	</form>
 
 <script type="text/javascript">
 	//function login() {}
-	
+
 	function signup() {
 		var http = new XMLHttpRequest();
 		http.onreadystatechange = () => {
@@ -53,7 +53,6 @@ session_start();
 
 </body>
 </html>
-<?php 
+<?php
 
 ?>
-
