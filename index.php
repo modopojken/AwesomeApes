@@ -29,7 +29,7 @@ session_start();
 			</p>
 			<p>
 				<input type="submit" name="login" id="login" value="Logga in">
-				<input type="submit" name="signup" id="signup" value="Sign up">
+				<input type="submit" name="sign_up" id="signup" value="Sign up">
 			</p>
 		</fieldset>
 	</form>
